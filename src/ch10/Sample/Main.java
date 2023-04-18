@@ -1,35 +1,65 @@
 package ch10.Sample;
 
 public class Main {
+
     public static void main(String[] args) {
-        if (args.length != 2) {
-            System.out.println("Usage: java Main randomseed1 randomseed2");
-            System.out.println("Example: java Main 314 15");
-            System.exit(0);
-        }
-        int seed1 = Integer.parseInt(args[0]);
-        int seed2 = Integer.parseInt(args[1]);
-        Player player1 = new Player("KIM", new WinningStrategy(seed1));
-        Player player2 = new Player("LEE", new ProbStrategy(seed2));
+        // Hand h1 = Hand.ROCK;
+        // System.out.println(h1.toString());
+
+        // Hand h2 = Hand.getHand(2);
+        // System.out.println(h2);
+
+        // // h1이 h2를 이기는지
+        // if (h1.isStrongerThan(h2)) {
+        // System.out.println("h1이 이김");
+        // } else if (h2.isStrongerThan(h1)) {
+        // System.out.println("h2이김");
+        // } else {
+        // System.out.println("무승부");
+        // }
+
+        // WinningStrategy ws1 = new WinningStrategy(100);
+
+        // ws1.study(false);
+
+        // Hand wsh1 = ws1.nextHand();
+        // System.out.println(wsh1);
+
+        // ws1.study(true);
+        // wsh1 = ws1.nextHand();
+        // System.out.println(wsh1);
+
+        // 게임진행
+
+        // 1.플레이어 생성
+
+        Player p1 = new Player("노하림", new ProbStrategy(100));
+        Player p2 = new Player("채형원", new WinningStrategy(200));
+
+        p2.setStrategy(new ProbStrategy(300));
+
+        // 2.게임 시작
         for (int i = 0; i < 10000; i++) {
-            Hand nextHand1 = player1.nextHand();
-            Hand nextHand2 = player2.nextHand();
-            if (nextHand1.isStrongerThan(nextHand2)) {
-                System.out.println("Winner:" + player1);
-                player1.win();
-                player2.lose();
-            } else if (nextHand2.isStrongerThan(nextHand1)) {
-                System.out.println("Winner:" + player2);
-                player1.lose();
-                player2.win();
+
+            Hand h1 = p1.nextHand();
+            Hand h2 = p2.nextHand();
+
+            if (h1.isStrongerThan(h2)) {
+                System.out.println("winner" + p1);
+                p1.win();
+                p2.lose();
+            } else if (h1.isWeakerThan(h2)) {
+                System.out.println("winner" + p2);
+                p2.win();
+                p1.lose();
             } else {
-                System.out.println("Even...");
-                player1.even();
-                player2.even();
+                System.out.println("even");
+                p2.even();
+                p1.even();
             }
         }
-        System.out.println("Total result:");
-        System.out.println(player1);
-        System.out.println(player2);
+
+        System.out.println(p1);
+        System.out.println(p2);
     }
 }

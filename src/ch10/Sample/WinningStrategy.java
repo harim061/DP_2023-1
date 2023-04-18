@@ -13,10 +13,10 @@ public class WinningStrategy implements Strategy {
 
     @Override
     public Hand nextHand() {
-        if (!won) {
+        if (!won) {// 직전에 졌으면
             prevHand = Hand.getHand(random.nextInt(3));
         }
-        return prevHand;
+        return prevHand; // 직전에 이겼으면 같은 손을 리턴함
     }
 
     @Override

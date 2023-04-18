@@ -7,6 +7,8 @@ class Main {
         List<String> list = Arrays.asList("D", "B", "C", "E", "A");
 
         // 사전순으로 작은 순서
+        // 익명의 내부클래스를 만드는 방법
+
         list.sort(new Comparator<String>() {
             public int compare(String a, String b) {
                 return a.compareTo(b);

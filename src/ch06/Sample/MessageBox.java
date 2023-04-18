@@ -26,8 +26,10 @@ public class MessageBox implements Product {
     @Override
     public Product createCopy() {
         Product p = null;
+        // p가 cloneable 인터페이스를 구현해야함
         try {
-            p = (Product)clone();
+            p = (Product) clone();
+            // 자기 복제가 일어남
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

@@ -1,10 +1,11 @@
 package ch01.A1;
 
-import java.util.Iterator;
-
 public class Main {
     public static void main(String[] args) {
+    	// Ã¥²ÈÀÌ¸¦ ¸¸µç´Ù.
         BookShelf bookShelf = new BookShelf(4);
+        
+        // Ã¥À» ¸¸µé¾î¼­ Ã¥²ÈÀÌ¿¡ ³Ö´Â´Ù
         bookShelf.appendBook(new Book("Around the World in 80 Days"));
         bookShelf.appendBook(new Book("Bible"));
         bookShelf.appendBook(new Book("Cinderella"));
@@ -13,19 +14,15 @@ public class Main {
         bookShelf.appendBook(new Book("Frankenstein"));
         bookShelf.appendBook(new Book("Gulliver's Travels"));
         bookShelf.appendBook(new Book("Hamlet"));
-
-        // ëª…ì‹œì ìœ¼ë¡œ Iteratorë¥¼ ì‚¬ìš©í•˜ëŠ” ë°©ë²• 
-        Iterator<Book> it = bookShelf.iterator();
+        
+        // Ã¥²ÈÀÌÀÇ Ã¥À» ÇÏ³ª¾¿ ²ôÁı¾î³¾ Iterator¸¦ ¾ò´Â´Ù.
+        Iterator it = bookShelf.iterator();
+        
+        // IteratorÀÇ hasNext( )¿Í next( ) ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÏ¿© 
+        // Ã¥À» ÇÏ³ª¾¿ ²ôÁı¾î³»¼­ Ã¥ÀÇ ÀÌ¸§À» Ãâ·ÂÇÑ´Ù.
         while (it.hasNext()) {
-            Book book = it.next();
-            System.out.println(book.getName());
+            Book book = (Book)it.next();
+            System.out.println("" + book.getName()); // Ã¥ÀÇ ÀÌ¸§À» ¾ò¾î¿È
         }
-        System.out.println();
-
-        // í™•ì¥ forë¬¸ì„ ì‚¬ìš©í•˜ëŠ” ë°©ë²•
-        for (Book book: bookShelf) {
-            System.out.println(book.getName());
-        }
-        System.out.println();
     }
 }

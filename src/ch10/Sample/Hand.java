@@ -1,32 +1,34 @@
 package ch10.Sample;
 
+//열거형 클래스 -> 타입으로 사용 가능
+
 public enum Hand {
     // 가위 바위 보를 나타내는 세 개의 enum 상수
     ROCK("바위", 0),
     SCISSORS("가위", 1),
     PAPER("보", 2);
 
-    // enum이 가진 필드 
+    // enum이 가진 필드
     private String name; // 가위 바위 보 손의 이름
-    private int handvalue; // 가위 바위 보 손의 값 
+    private int handvalue; // 가위 바위 보 손의 값
 
     // 손의 값으로 상수를 얻기 위한 배열
     private static Hand[] hands = {
-        ROCK, SCISSORS, PAPER
+            ROCK, SCISSORS, PAPER
     };
 
-    // 생성자 
+    // 생성자
     private Hand(String name, int handvalue) {
         this.name = name;
         this.handvalue = handvalue;
     }
 
-    // 손의 값으로 enum 상수를 가져온다 
+    // 손의 값으로 enum 상수를 가져온다
     public static Hand getHand(int handvalue) {
         return hands[handvalue];
     }
 
-    // this가 h보다 강할 때 true
+    // this(현재 손)가 h(인자로 들어온 손) 보다 강할 때 true
     public boolean isStrongerThan(Hand h) {
         return fight(h) == 1;
     }

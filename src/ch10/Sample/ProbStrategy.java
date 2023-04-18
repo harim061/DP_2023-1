@@ -6,10 +6,10 @@ public class ProbStrategy implements Strategy {
     private Random random;
     private int prevHandValue = 0;
     private int currentHandValue = 0;
-    private int[][] history = {
-        { 1, 1, 1, },
-        { 1, 1, 1, },
-        { 1, 1, 1, },
+    private int[][] history = { // 2차원 배열
+            { 1, 1, 1, },
+            { 1, 1, 1, },
+            { 1, 1, 1, },
     };
 
     public ProbStrategy(int seed) {
@@ -20,6 +20,7 @@ public class ProbStrategy implements Strategy {
     public Hand nextHand() {
         int bet = random.nextInt(getSum(currentHandValue));
         int handvalue = 0;
+
         if (bet < history[currentHandValue][0]) {
             handvalue = 0;
         } else if (bet < history[currentHandValue][0] + history[currentHandValue][1]) {

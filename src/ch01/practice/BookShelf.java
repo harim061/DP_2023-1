@@ -1,30 +1,42 @@
 package ch01.practice;
 
-public class BookShelf {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-    private Book[] books; //배열 선언
+public class BookShelf implements Iterable<Book> {
+    // 책을 가지고 있는 Iterable
 
-    //책의 마지막 위치
-    private int last = 0;
-
+    // Book[] books; // 배열 선언
+    private List<Book> books;
 
     public BookShelf(int maxsize) {
-        //배열 생성
-        this.books = new Book[maxsize];
+        // this.books = new Book[maxsize];
+        this.books = new ArrayList<Book>(maxsize);
     }
 
-    //책을 꽂는 메소드
-    public void appendBook(Book book){
-        this.books[last] = book;
-        last += 1;
+    public void appendBook(Book book) {
+        // this.books[last] = book;
+        books.add(book);
+
     }
 
-    //책을 꺼내오는 메소드
-    public Book getBookAt(int index){
-        return books[index];
+    // public Book getBookAt(int index) {
+    public Book getBookFrom(int index) {
+        // return books[index];
+        return books.get(index);
     }
 
-    //책 갯수를 리턴하는 메소드
-    
+    public int getLength() {
+        return books.size();
+        // return last;
+    }
 
+    // iterator 반환 메소드
+    // public BookShelfIterator iterator() {
+    @Override
+    public Iterator<Book> iterator() {
+        // 책을 돌아다니는 Iterator
+        return new BookShelfIterator(this);
+    }
 }

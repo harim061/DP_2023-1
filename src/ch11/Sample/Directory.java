@@ -19,7 +19,7 @@ public class Directory extends Entry {
     @Override
     public int getSize() {
         int size = 0;
-        for (Entry entry: directory) {
+        for (Entry entry : directory) {
             size += entry.getSize();
         }
         return size;
@@ -28,7 +28,7 @@ public class Directory extends Entry {
     @Override
     protected void printList(String prefix) {
         System.out.println(prefix + "/" + this);
-        for (Entry entry: directory) {
+        for (Entry entry : directory) {
             entry.printList(prefix + "/" + name);
         }
     }

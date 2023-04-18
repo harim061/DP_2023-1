@@ -1,27 +1,47 @@
 package ch01.Sample;
 
-import java.util.Iterator;
-
 public class Main {
+	// ¸ğµç ÀÚ¹Ù ÇÁ·Î±×·¥Àº main() ¸Ş¼ÒµåºÎÅÍ ½ÃÀÛµÈ´Ù.
     public static void main(String[] args) {
-        BookShelf bookShelf = new BookShelf(4);
+    	// ÃÖ´ë 4±ÇÀÇ Ã¥À» ´ãÀ» ¼ö ÀÖ´Â Ã¥²ÈÀÌ¸¦ »ı¼ºÇÑ´Ù.
+        BookShelf bookShelf = new BookShelf(5);
+        Aggregate bookShelf2 = new BookShelf(4);
+        // 4±ÇÀÇ Ã¥À» ²È´Â´Ù.
         bookShelf.appendBook(new Book("Around the World in 80 Days"));
         bookShelf.appendBook(new Book("Bible"));
         bookShelf.appendBook(new Book("Cinderella"));
         bookShelf.appendBook(new Book("Daddy-Long-Legs"));
 
-        // ëª…ì‹œì ìœ¼ë¡œ Iteratorë¥¼ ì‚¬ìš©í•˜ëŠ” ë°©ë²• 
-        Iterator<Book> it = bookShelf.iterator();
-        while (it.hasNext()) {
-            Book book = it.next();
-            System.out.println(book.getName());
-        }
-        System.out.println();
+		// Ã¥²ÈÀÌÀÇ Iterator¸¦ ¾ò¾î¿Â´Ù.
+        // ½ÇÁ¦ »ı¼ºµÇ´Â °´Ã¼ÀÇ Å¸ÀÔÀº BookShelfIteraterÀÌ´Ù.
+		Iterator it = bookShelf.iterator();
+        
+		// Ã¥ÀÌ °è¼ÓÇØ¼­ ÀÖÀ¸¸é while ·çÇÁ¸¦ µ·´Ù.
+		// Ã¥ÀÌ ´õ ÀÖ´ÂÁö °Ë»çÇÏ±â À§ÇØ¼­, iteratorÀÇ hasNext()¸¦ È£ÃâÇÑ´Ù.
+		while (it.hasNext()) {
+			Book book = (Book)it.next(); // ´ÙÀ½ Ã¥À» ¾ò¾î¿Â´Ù.
+			// À§ ¹®Àå ´ë½Å¿¡
+			// Object book = it.next();
+			// À» »ç¿ëÇÏ¸é ¾È µÈ´Ù.
+            // ¿Ö³ÄÇÏ¸é, ¾Æ·¡¿¡¼­ book.getName()À» È£ÃâÇÏ´Âµ¥,
+			// Object Å¸ÀÔÀº getName() À» Áö¿øÇÏÁö ¾Ê´Â´Ù.
+			// µû¶ó¼­,  it.next( )°¡ ¹İÈ¯ÇÑ Object ÇüÀ» Book ÇüÀ¸·Î "°­Á¦Çüº¯È¯"ÇØ¾ß ÇÑ´Ù.
 
-        // í™•ì¥ forë¬¸ì„ ì‚¬ìš©í•˜ëŠ” ë°©ë²• 
-        for (Book book: bookShelf) {
-            System.out.println(book.getName());
+			// Ã¥ÀÇ ÀÌ¸§À» Ãâ·ÂÇÑ´Ù.
+			System.out.println("" + book.getName());
+           
         }
-        System.out.println();
+
+        // Ã¥²ÈÀÌ¿¡ Á÷Á¢ Á¢±ÙÇØ¼­ °¢ Ã¥À» ¾ò¾î¿Í¼­ Ã¥ÀÇ ÀÌ¸§À» Ãâ·ÂÇÑ´Ù.
+		// iterator¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+		for(int i=0; i<bookShelf.getLength(); i++) {
+			Book book = bookShelf.getBookFrom(i);
+            System.out.println("" + book.getName());
+	    }
     }
 }
+
+
+
+
+
